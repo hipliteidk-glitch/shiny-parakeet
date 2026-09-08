@@ -1,0 +1,2 @@
+const http=require('http'),fs=require('fs'),path=require('path');
+http.createServer((req,res)=>{let name=decodeURIComponent(req.url.split('?')[0]);if(name==='/')name='/index.html';const f=path.resolve(__dirname,'.'+name);if(!f.startsWith(__dirname+path.sep)){res.writeHead(403);return res.end();}fs.readFile(f,(err,data)=>{if(err){res.writeHead(404);return res.end('Not found');}res.setHeader('Content-Type',({'html':'text/html','js':'text/javascript','css':'text/css','mp4':'video/mp4'})[f.split('.').pop()]||'application/octet-stream');res.end(data);});}).listen(3000,'0.0.0.0');

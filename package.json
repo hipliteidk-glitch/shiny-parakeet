@@ -1,0 +1,1 @@
+{"name":"sound-sense","private":true,"scripts":{"start":"node server.js","export":"node export.cjs"},"devDependencies":{"@napi-rs/canvas":"^1.0.8"}}
