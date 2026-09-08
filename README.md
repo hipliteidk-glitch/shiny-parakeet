@@ -1,20 +1,32 @@
-# Sound Sense — original video player
+# Sound Sense — full-length animation recreation
 
-The webpage now plays the user's original @talk.why video, including its original audio, captions, timing, and branding. It is an unchanged copy of the supplied file, **not a newly rendered recreation**. Attribution remains with the original creator; hosting it does not imply ownership or verification of its medical claims.
+A newly drawn, approximately 2-minute recreation of the supplied @talk.why explainer. The MP4 uses freshly rendered Canvas vector artwork and the original audio track. **No original video frames are used in the render.**
 
-## Run
+This is an approximate scene-by-scene visual reconstruction, not a pixel-perfect copy. It follows the source's scene order, dark landscape illustration band within a portrait frame, Indonesian caption cues, purple/red/green accents, and hearing diagrams. Caption timing is manually estimated; it is not a verified verbatim transcript. Platform watermarks and the platform outro are not reproduced.
+
+## Webpage
 
 ```
-npm install
+npm ci
 npm start
 ```
 
-Open port 3000. Includes native audio/fullscreen controls, play/pause, replay, timeline, and MP4 download. The server supports byte-range requests for video seeking.
+Open port 3000. The player shows `exports/recreated.mp4` with original audio, native fullscreen/volume controls, replay, scrubbing, and download. The Node server supports byte-range seeking.
 
-## Download
+## Export
 
-`exports/sound-sense.mp4` is the original video, approximately 2 minutes, 576 × 1024, with audio. This deliverable is tracked in Git.
+```
+FFMPEG=/path/to/ffmpeg npm run export:recreation
+```
 
-## Earlier stylized version
+The workspace also supports an imageio-ffmpeg executable in `/home/user/.venv`. Output: `exports/recreated.mp4`, 576 × 1024, 30 fps, 120.63 seconds, H.264 video with the source AAC audio copied without re-encoding. `recreation.js` contains the scene renderer and timed caption list. Poppins is bundled under its included open font license.
 
-`animation.js` and `export.cjs` retain the earlier original 36-second silent study. It is no longer shown on the webpage. To generate it separately, run `FFMPEG=/path/to/ffmpeg npm run export`. Output: `exports/stylized-study.mp4` (ignored by Git). The exporter also supports this workspace's imageio-ffmpeg installation in `/home/user/.venv`.
+`animation.js` and `export.cjs` retain the earlier 36-second silent style study; `npm run export` generates it separately as `exports/stylized-study.mp4`. `exports/sound-sense.mp4` is the previously published unchanged original, **not** the new recreation.
+
+## Attribution and content
+
+Source video and audio: @talk.why, supplied in this repository. The recreation is labeled as such and does not claim affiliation with the creator. Source claims and audio are retained for reconstruction, not endorsed or medically verified. In particular, the tinnitus explanation, “8 out of 10” statistic, illustrative cell counts, and volume-percentage advice should not be treated as validated medical guidance.
+
+## Checks
+
+The recreated file's audio packet SHA-256 matches the original. Duration, resolution, frame rate, visual contact sheet, and HTTP byte-range playback have been checked. The render is deterministic and reproducible from source.

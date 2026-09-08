@@ -1,1 +1,13 @@
-{"name":"sound-sense","private":true,"scripts":{"start":"node server.js","export":"node export.cjs"},"devDependencies":{"@napi-rs/canvas":"^1.0.8"}}
+{
+  "name": "sound-sense",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "export": "node export.cjs",
+    "export:recreation": "node export-recreation.cjs"
+  },
+  "devDependencies": {
+    "@fontsource/poppins": "^5.3.0",
+    "@napi-rs/canvas": "^1.0.8"
+  }
+}
